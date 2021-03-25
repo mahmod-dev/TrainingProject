@@ -6,22 +6,26 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mahmouddev.trainingproject.adapters.StudentAdapter
+import com.mahmouddev.trainingproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     val TAG = "MainActivity"
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Log.e(TAG, "onCreate: ")
-        val btn = findViewById<Button>(R.id.btn)
-        val etFirstName = findViewById<EditText>(R.id.etFirstName)
-        val etLastName = findViewById<EditText>(R.id.etLastName)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btn.setOnClickListener {
-            val fName = etFirstName.text.toString()
-            val lName = etLastName.text.toString()
-            navigateWithDataActivity(fName, lName)
+
+        binding.btn.setOnClickListener {
+            val fName = binding.etFirstName.text.toString()
+            val lName = binding.etLastName.text.toString()
+            navigateSerializeDataActivity()
         }
+
+        initRecycleView()
 
 
     }
@@ -37,12 +41,34 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("lName", lName)
         startActivity(intent)
     }
-    private fun navigateSerializeDataActivity() {
-       val std =  Student("ali",20,90.5, arrayOf("math","english","programminig","sientific"))
-        val intent = Intent(this, SecondActivity::class.java)
-        intent.putExtra("student",std)
 
+    private fun navigateSerializeDataActivity() {
+        val std = Student("ali", 20, 90.5, arrayOf("math", "english", "programminig", "sientific"))
+        val intent = Intent(this, SecondActivity::class.java)
+        intent.putExtra("student", std)
         startActivity(intent)
+    }
+
+
+    private fun initRecycleView() {
+        val data = ArrayList<Student>()
+        data.add(Student("ali", 20, 80.1))
+        data.add(Student("ahmed", 15, 70.1))
+        data.add(Student("mahmoud", 22, 80.1))
+        data.add(Student("salah", 30, 90.1))
+        data.add(Student("sara", 25, 95.1))
+        data.add(Student("nadia", 10, 80.1))
+        data.add(Student("saead", 40, 40.1))
+        data.add(Student("khaled", 55, 70.1))
+
+        val adapter = StudentAdapter(data)
+        binding.rvStudent.adapter = adapter
+
+        val manager = LinearLayoutManager(this)
+        manager.orientation = LinearLayoutManager.VERTICAL
+
+        binding.rvStudent.layoutManager = manager
+
     }
 
 
