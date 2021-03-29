@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 import org.jetbrains.annotations.NotNull
 
 @Parcelize
- class Student(
+ data class Student(
     val name: String,
     val age: Int,
     val rate: Double,

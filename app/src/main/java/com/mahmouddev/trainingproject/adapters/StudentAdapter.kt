@@ -1,13 +1,19 @@
 package com.mahmouddev.trainingproject.adapters
 
+import android.app.Activity
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mahmouddev.trainingproject.DetailsActivity
 import com.mahmouddev.trainingproject.Student
 import com.mahmouddev.trainingproject.databinding.ItemStudentBinding
 
-class StudentAdapter(val data: ArrayList<Student>) :
+class StudentAdapter(var activity: Activity,val data: ArrayList<Student>) :
     RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+    val TAG = "StudentAdapter"
+    lateinit var onItemClick: ((Int,Student) -> Unit)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -17,7 +23,6 @@ class StudentAdapter(val data: ArrayList<Student>) :
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-
 
         holder.bind(data.get(position))
 
@@ -30,10 +35,19 @@ class StudentAdapter(val data: ArrayList<Student>) :
 
     inner class StudentViewHolder(var binding: ItemStudentBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(std: Student) {
             binding.tvName.text = std.name
             binding.tvAge.text = std.age.toString()
-            binding.tvRate.text = std.rate.toString()
+            binding.tvRate.text = "${std.rate}"
+
+            binding.linContainer.setOnClickListener {
+                onItemClick.invoke(adapterPosition,data.get(adapterPosition))
+             //   Log.e(TAG, "adapterPosition: $adapterPosition", )
+//                val intent = Intent(activity,DetailsActivity::class.java)
+//                activity.startActivity(intent)
+
+            }
 
         }
 

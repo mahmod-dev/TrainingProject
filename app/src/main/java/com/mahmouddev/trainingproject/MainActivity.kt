@@ -4,11 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mahmouddev.trainingproject.adapters.StudentAdapter
 import com.mahmouddev.trainingproject.databinding.ActivityMainBinding
+import com.mahmouddev.trainingproject.util.ImageStorageInternal
 
 class MainActivity : AppCompatActivity() {
     val TAG = "MainActivity"
@@ -61,13 +60,22 @@ class MainActivity : AppCompatActivity() {
         data.add(Student("saead", 40, 40.1))
         data.add(Student("khaled", 55, 70.1))
 
-        val adapter = StudentAdapter(data)
+        val adapter = StudentAdapter(this, data)
         binding.rvStudent.adapter = adapter
 
         val manager = LinearLayoutManager(this)
         manager.orientation = LinearLayoutManager.VERTICAL
 
         binding.rvStudent.layoutManager = manager
+
+        adapter.onItemClick = { position, student ->
+
+            val intent = Intent(this, DetailsActivity::class.java)
+            intent.putExtra("student", student)
+            startActivity(intent)
+            Log.e(TAG, "position: $position student: $student ")
+
+        }
 
     }
 
