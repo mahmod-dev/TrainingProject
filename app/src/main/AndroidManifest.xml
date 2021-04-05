@@ -15,16 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrainingProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DetailsActivity"></activity>
-        <activity android:name=".StorageActivity"></activity>
-        <activity android:name=".SecondActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ThreadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewModelActivity">
+
+        </activity>
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".StorageActivity" />
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
