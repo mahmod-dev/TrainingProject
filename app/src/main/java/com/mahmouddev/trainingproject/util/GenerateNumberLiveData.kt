@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GenerateNumberLiveData : ViewModel() {
+class GenerateNumberLiveData() : ViewModel() {
 
     private var number: MutableLiveData<Int>? = null
 

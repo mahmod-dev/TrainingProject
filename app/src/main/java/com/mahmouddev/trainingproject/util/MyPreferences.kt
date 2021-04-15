@@ -1,7 +1,9 @@
 package com.mahmouddev.trainingproject.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 
+@SuppressLint("StaticFieldLeak")
 object MyPreferences {
     var context: Context? = null
     const val PREFS_NAME = "prefs"

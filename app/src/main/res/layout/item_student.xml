@@ -1,45 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f2f2f2"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:contentPadding="10dp"
     android:clickable="true"
     android:focusable="true"
-    android:id="@+id/linContainer"
     android:foreground="?attr/selectableItemBackground"
-    android:layout_marginBottom="5dp"
-    android:orientation="vertical">
+    android:layout_margin="5dp"
+    app:cardElevation="10dp"
+    android:id="@+id/card"
+    android:padding="5dp">
 
-    <TextView
-        android:id="@+id/tvName"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#000" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#f00" />
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mahmoud"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
 
-    <TextView
-        android:id="@+id/tvRate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="#0f0" />
+        <TextView
+            android:id="@+id/tvRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:text="99%"
+            android:textColor="@color/teal_200" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvName"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toEndOf="@+id/tvName"
+            android:text="22 year"
+            android:textColor="#f00" />
 
-</LinearLayout>
+
+        <TextView
+            android:id="@+id/tvGraduate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:text="graduated"
+            android:textColor="#EEA39D9D" />
+
+        <TextView
+            android:id="@+id/tvGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Male"
+            android:textColor="#EEA39D9D" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,56 +1,57 @@
 package com.mahmouddev.trainingproject.adapters
 
 import android.app.Activity
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+
 import androidx.recyclerview.widget.RecyclerView
-import com.mahmouddev.trainingproject.DetailsActivity
-import com.mahmouddev.trainingproject.Student
 import com.mahmouddev.trainingproject.databinding.ItemStudentBinding
+import com.mahmouddev.trainingproject.roomDB.entities.Student
 
-class StudentAdapter(var activity: Activity,val data: ArrayList<Student>) :
-    RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
+class StudentAdapter(var activity: Activity, var data: List<Student>) :
+    RecyclerView.Adapter<StudentAdapter.MyViewHolder>() {
     val TAG = "StudentAdapter"
-    lateinit var onItemClick: ((Int,Student) -> Unit)
+    var onItemClick: ((Student) -> Unit)? = null
+    var onLongClick: ((Int) -> Unit)? = null
 
+    override
+    fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
+        val view = LayoutInflater.from(viewGroup.context)
+        val viewBinding = ItemStudentBinding.inflate(view, viewGroup, false)
+        return MyViewHolder(viewBinding)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemStudentBinding.inflate(inflater, parent, false)
-        return StudentViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-
-        holder.bind(data.get(position))
-
+    override fun onBindViewHolder(myViewHolder: MyViewHolder, i: Int) {
+        myViewHolder.bind(data[i])
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
+    inner class MyViewHolder(val viewBinding: ItemStudentBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
 
-    inner class StudentViewHolder(var binding: ItemStudentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        fun bind(student: Student) {
+            viewBinding.apply {
+                tvName.text = student.name
+                tvAge.text = student.age
+                tvGender.text = student.gender
+                tvRate.text = student.rate.toString()
+                tvGraduate.text = if (student.isGraduate) "graduated" else "student"
 
-        fun bind(std: Student) {
-            binding.tvName.text = std.name
-            binding.tvAge.text = std.age.toString()
-            binding.tvRate.text = "${std.rate}"
+                card.setOnClickListener {
+                    onItemClick?.invoke(data[adapterPosition])
+                }
+                card.setOnLongClickListener {
+                    onLongClick?.invoke(data[adapterPosition].id)
 
-            binding.linContainer.setOnClickListener {
-                onItemClick.invoke(adapterPosition,data.get(adapterPosition))
-             //   Log.e(TAG, "adapterPosition: $adapterPosition", )
-//                val intent = Intent(activity,DetailsActivity::class.java)
-//                activity.startActivity(intent)
-
+                    true
+                }
             }
 
         }
-
-
     }
+
 }

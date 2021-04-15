@@ -1,6 +1,7 @@
 package com.mahmouddev.trainingproject
 
 import android.content.Intent
+import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
@@ -47,4 +48,5 @@ class ThreadActivity : AppCompatActivity() {
     suspend fun getDataFromApi2(result: String): String {
         return "result2 ->: $result"
     }
+
 }

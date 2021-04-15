@@ -15,20 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrainingProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ThreadActivity">
+        <activity android:name=".RetrofitCoroutineActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewModelActivity">
+        <activity android:name=".RetrofitActivity">
 
         </activity>
+        <activity android:name=".dbActivity.EditActivity" />
+        <activity android:name=".dbActivity.AddActivity" />
+        <activity android:name=".dbActivity.ListActivity"></activity>
+        <activity android:name=".ThreadActivity" />
+        <activity android:name=".ViewModelActivity" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".StorageActivity" />
         <activity android:name=".SecondActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
